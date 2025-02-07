@@ -21,13 +21,21 @@
 }
 
 h1 {
-    color: 333;
+    color: #555;
+}
+
+h2{
+    font-size: large;
 }
 
 a{
     color: tomato;
     text-decoration: none;
     font-weight: 600;
+}
+
+a, button{
+    cursor: pointer;
 }
 
 body {
@@ -66,7 +74,7 @@ body {
     gap: var(--spacing-reg);
 }
 
-.destination-card {
+.card {
     background: white;
     border-radius: var(--spacing-qtr);
     overflow: hidden;
@@ -115,11 +123,45 @@ padding: var(--spacing-qtr) var(--spacing-reg);
     justify-content: space-between;
 }
 
-.destination-card__like-button {
+.like-button {
     color: tomato;
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
     width: 2rem;
     height: 2rem;
+}
+
+.item-detail{
+    display: flex;
+}
+
+.item-detail__image-container, .item-detail__content-container{
+    flex-basis: 50%;
+}
+
+.item-detail__image-container{
+    position: relative;
+}
+
+.item-detail__content-container{
+    padding: var(--spacing-dbl);
+    gap: var(--spacing-reg);
+    background-color: white;
+}
+
+.item-detail__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-detail__button-container{
+    position: absolute;
+    width: 100%;
+    justify-content: space-between;
+    padding: var(--spacing-dbl);
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
