@@ -14,19 +14,17 @@ function createDetail(d) {
     let detailSection = document.createElement("section");
     detailSection.classList.add("item-detail", "card");
 
-    let semiUniqueID = d.destination + d.id;
-    detailSection.id = semiUniqueID;
-
-    detailSection.innerHTML += createDetailCard(d,semiUniqueID);
+    detailSection.innerHTML += createDetailCard(d);
 
     rootElm.append(detailSection)
 }
 
-function createDetailCard(d, semiUniqueID) {
+function createDetailCard(d) {
+    let semiUniqueID = d.destination+d.id;
     return `<div class="item-detail__image-container">
                 <div class="item-detail__button-container fxrow">
                     <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a>
-                    <button class="destination-card__like-button like-button" onclick="handleFavorite('${semiUniqueID}')"><i class="${handleLikeIcon(semiUniqueID)}"></i></button>
+                    <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}" id="${semiUniqueID}"></i></button>
                 </div>
                 <img src="./img/${d.image}" alt="" class="item-detail__image">
                 

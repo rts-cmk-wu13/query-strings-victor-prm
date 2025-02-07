@@ -19,7 +19,7 @@ function createGrid(d) {
 
     function createCard(d) {
         let semiUniqueID = d.destination+d.id;
-        return `<article class="destination-card card" id="${semiUniqueID}">
+        return `<article class="destination-card card">
                     <div class="destination-card__img-container">
                         <div class="destination-card__img-container__header fxcol">
                         <h2 class="destination-card__title">${d.title}</h2>
@@ -28,7 +28,7 @@ function createGrid(d) {
                         <img src="./img/${d.image}" alt="" class="destination-card__img">
                     </div>
                     <div class="destination-card__content-container fxrow">
-                        <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}"></i></button>
+                        <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}" id="${semiUniqueID}"></i></button>
                         <a href="detail.html?id=${d.id}" class="destination-card__more-link">More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>`
