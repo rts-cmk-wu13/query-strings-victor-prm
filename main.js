@@ -5,29 +5,33 @@ fetch("./data/destinations.json")
 
 function createGrid(d) {
     let rootElm = document.querySelector(".content-container");
+    let mainHeadline = document.createElement("h1");
+    mainHeadline.classList.add("title-main");
+    mainHeadline.innerHTML = "Our Wonderful Apartments";
+
     let itemGrid = document.createElement("section");
     itemGrid.classList.add("item-grid");
-    rootElm.append(itemGrid);
 
-    itemGrid.innerHTML += d.destinations.map(item => createCard(item)).join("");
+    rootElm.append(mainHeadline,itemGrid);
+    itemGrid.innerHTML += d.destinations.map(item => {
+        return createCard(item);
+    }).join("")
 }
 
 function createCard(d) {
-    //let flag = getFlagEmoji(d.destination,`test${d.id}`)
-    let flag = getFlagEmoji(d.destination)
     return `<article class="destination-card">
                 <div class="destination-card__img-container">
                     <div class="destination-card__img-container__header fxcol">
                     <h2 class="destination-card__title">${d.title}</h2>
-                    <p class="destination-card__destination">${d.destination}</p>
-                    <p class="test${d.id}">${flag}</p>
-
+                    <p class="destination-card__destination">${d.destination} <span class="flag${d.id}">${getFlagEmoji(d.destination,`flag${d.id}`)}</span></p>
+                    
+                    
                 </div>
                     <img src="./img/${d.image}" alt="" class="destination-card__img">
                 </div>
-                <div class="destination-card__content-container">
-                    <button class="destination-card__like-button">Like</button>
-                    <a href="detail.html?id=${d.id}}" class="destination-card__more-link">More</a>
+                <div class="destination-card__content-container fxrow">
+                    <button class="destination-card__like-button"><i class="fa fa-heart-o"></i></button>
+                    <a href="detail.html?id=${d.id}}" class="destination-card__more-link">More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>`
 }
@@ -37,21 +41,16 @@ function createCard(d) {
 
 
 function getFlagEmoji(countryName, css) {
+    console.log(countryName, css)
     countryName = countryName.toLowerCase();
-    let flag;
     fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then(resp => resp.json())
         .then(json => {
             let code = json[0].cca2;
-            return code;
-        }).then(code => {
             //console.log(code)
-            flag = getFlagbyCode(code);
-            //console.log(flag)
-            //document.querySelector(`.${css}`).innerHTML += flag;
-            return String(flag);
-        })
-        
+            let flag = getFlagbyCode(code);
+            document.querySelector(`.${css}`).innerHTML = flag;
+        }) 
 }
 
 function getFlagbyCode(str) {
