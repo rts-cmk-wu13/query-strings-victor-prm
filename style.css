@@ -145,7 +145,7 @@ padding: var(--spacing-qtr) var(--spacing-reg);
 }
 
 .item-detail__content-container{
-    padding: var(--spacing-dbl);
+    padding: var(--spacing-reg) var(--spacing-dbl) var(--spacing-dbl) ;
     gap: var(--spacing-reg);
     background-color: white;
 }
@@ -160,7 +160,7 @@ padding: var(--spacing-qtr) var(--spacing-reg);
     position: absolute;
     width: 100%;
     justify-content: space-between;
-    padding: var(--spacing-dbl);
+    padding: var(--spacing-reg) var(--spacing-reg) var(--spacing-dbl) ;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
