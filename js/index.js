@@ -2,7 +2,7 @@ fetch("./data/destinations.json")
     .then(res => res.json())
     .then(data => createGrid(data));
 
-
+let uniqueArray = [];
 function createGrid(d) {
     let rootElm = document.querySelector(".content-container");
     let mainHeadline = document.createElement("h1");
@@ -17,7 +17,13 @@ function createGrid(d) {
         return createCard(item);
     }).join("");
 
+    
+    //const unique = [...new Set(data.map(item => item.group))];
+    //console.log(unique);
+
     function createCard(d) {
+        //findUniqueFacilities(d);
+      
         let semiUniqueID = d.destination+d.id;
         return `<article class="destination-card card">
                     <div class="destination-card__img-container">
@@ -53,4 +59,11 @@ function getFlagbyCode(str) {
     let codePoints = str.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
     //console.log(codePoints)
     return String.fromCodePoint(...codePoints);
+}
+
+function findUniqueFacilities(d){
+    d.facilities.forEach(e => {
+        if (!uniqueArray.includes(e)) uniqueArray.push(e)
+     })
+    console.log(uniqueArray)
 }

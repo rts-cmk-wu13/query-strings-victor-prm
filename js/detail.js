@@ -34,7 +34,7 @@ function createDetailCard(d) {
                 <h2>${d.subtitle}</h2>
                 <p><i class="fa-solid fa-location-dot"></i> ${d.destination}</p>
                 <p>${d.text}</p>
-                <ul>
+                <ul class="item-detail__facilities-list">
                     ${d.facilities.map(facility => createListItem(facility)).join("")}
                 </ul>
                 
@@ -42,6 +42,8 @@ function createDetailCard(d) {
     `
 }
 
+
 function createListItem(d) {
-    return `<li>${d}</li>`
+    //mapFacilitiesIcons(d);
+    return `<li><i class="${mapFacilitiesIcons(d)} facility-icon"></i> ${d}</li>`
 }
