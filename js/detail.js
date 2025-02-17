@@ -24,7 +24,7 @@ function createDetailCard(d) {
     return `<div class="item-detail__image-container">
                 <div class="item-detail__button-container fxrow">
                     <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a>
-                    <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}" id="${semiUniqueID}"></i></button>
+                    ${renderLikeIcon(semiUniqueID)}
                 </div>
                 <img src="./img/${d.image}" alt="" class="item-detail__image">
                 

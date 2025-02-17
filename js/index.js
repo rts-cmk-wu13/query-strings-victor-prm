@@ -12,29 +12,29 @@ function createGrid(d) {
     let itemGrid = document.createElement("section");
     itemGrid.classList.add("item-grid");
 
-    rootElm.append(mainHeadline,itemGrid);
+    rootElm.append(mainHeadline, itemGrid);
     itemGrid.innerHTML += d.destinations.map(item => {
         return createCard(item);
     }).join("");
 
-    
+
     //const unique = [...new Set(data.map(item => item.group))];
     //console.log(unique);
 
     function createCard(d) {
         //findUniqueFacilities(d);
-      
-        let semiUniqueID = d.destination+d.id;
+
+        let semiUniqueID = d.destination + d.id;
         return `<article class="destination-card card">
                     <div class="destination-card__img-container">
                         <div class="destination-card__img-container__header fxcol">
                         <h2 class="destination-card__title">${d.title}</h2>
-                        <p class="destination-card__destination">${d.destination} <span class="flag${d.id}">${getFlagEmoji(d.destination,`flag${d.id}`)}</span></p>
+                        <p class="destination-card__destination">${d.destination} <span class="flag${d.id}">${getFlagEmoji(d.destination, `flag${d.id}`)}</span></p>
                     </div>
                         <img src="./img/${d.image}" alt="" class="destination-card__img">
                     </div>
                     <div class="destination-card__content-container fxrow">
-                        <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}" id="${semiUniqueID}"></i></button>
+                        ${renderLikeIcon(semiUniqueID)}
                         <a href="detail.html?id=${d.id}" class="destination-card__more-link">More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>`
@@ -51,7 +51,7 @@ function getFlagEmoji(countryName, css) {
             //console.log(code)
             let flag = getFlagbyCode(code);
             document.querySelector(`.${css}`).innerHTML = flag;
-        }) 
+        })
 }
 
 function getFlagbyCode(str) {
@@ -61,9 +61,9 @@ function getFlagbyCode(str) {
     return String.fromCodePoint(...codePoints);
 }
 
-function findUniqueFacilities(d){
+function findUniqueFacilities(d) {
     d.facilities.forEach(e => {
         if (!uniqueArray.includes(e)) uniqueArray.push(e)
-     })
+    })
     console.log(uniqueArray)
 }

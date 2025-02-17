@@ -44,6 +44,10 @@ function handleLikeIcon(id) {
     }
 }
 
+function renderLikeIcon(id){
+    return `<button class="destination-card__like-button like-button" onclick="handleFavorite(${id})"><i class="${handleLikeIcon(id)}" id="${id}"></i></button>`
+}
+
 function mapFacilitiesIcons(fac) {
     let iconMaps = [
         {
