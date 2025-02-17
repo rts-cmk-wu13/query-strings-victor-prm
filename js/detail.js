@@ -16,7 +16,8 @@ function createDetail(d) {
 
     detailSection.innerHTML += createDetailCard(d);
 
-    rootElm.append(detailSection)
+    rootElm.append(detailSection);
+    handleLikeIcons();
 }
 
 function createDetailCard(d) {
@@ -24,7 +25,7 @@ function createDetailCard(d) {
     return `<div class="item-detail__image-container">
                 <div class="item-detail__button-container fxrow">
                     <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a>
-                    <button class="destination-card__like-button like-button" onclick="handleFavorite(${semiUniqueID})"><i class="${handleLikeIcon(semiUniqueID)}" id="${semiUniqueID}"></i></button>
+                    ${renderLikeIcon(semiUniqueID)}
                 </div>
                 <img src="./img/${d.image}" alt="" class="item-detail__image">
                 
@@ -32,7 +33,7 @@ function createDetailCard(d) {
             <div class="item-detail__content-container fxcol">
                 <h1>${d.title}</h1>
                 <h2>${d.subtitle}</h2>
-                <p><i class="fa-solid fa-location-dot"></i> ${d.destination}</p>
+                <p><span class="icon-list-item-container"><i class="fa-solid fa-location-dot"></i></span> ${d.destination}</p>
                 <p>${d.text}</p>
                 <ul class="item-detail__facilities-list">
                     ${d.facilities.map(facility => createListItem(facility)).join("")}
@@ -45,5 +46,5 @@ function createDetailCard(d) {
 
 function createListItem(d) {
     //mapFacilitiesIcons(d);
-    return `<li><i class="${mapFacilitiesIcons(d)} facility-icon"></i> ${d}</li>`
+    return `<li><span class="icon-list-item-container"><i class="${mapFacilitiesIcons(d)} facility-icon"></i></span> ${d}</li>`
 }
