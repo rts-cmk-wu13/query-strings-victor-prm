@@ -170,7 +170,7 @@ padding: var(--spacing-qtr) var(--spacing-reg);
     list-style: none;
 }
 
-.facility-icon, .fa-location-dot{
+.icon-list-item-container{
     display: inline-flex;
     align-items: center;
     justify-content: center;

@@ -16,7 +16,8 @@ function createDetail(d) {
 
     detailSection.innerHTML += createDetailCard(d);
 
-    rootElm.append(detailSection)
+    rootElm.append(detailSection);
+    handleLikeIcons();
 }
 
 function createDetailCard(d) {
@@ -32,7 +33,7 @@ function createDetailCard(d) {
             <div class="item-detail__content-container fxcol">
                 <h1>${d.title}</h1>
                 <h2>${d.subtitle}</h2>
-                <p><i class="fa-solid fa-location-dot"></i> ${d.destination}</p>
+                <p><span class="icon-list-item-container"><i class="fa-solid fa-location-dot"></i></span> ${d.destination}</p>
                 <p>${d.text}</p>
                 <ul class="item-detail__facilities-list">
                     ${d.facilities.map(facility => createListItem(facility)).join("")}
@@ -45,5 +46,5 @@ function createDetailCard(d) {
 
 function createListItem(d) {
     //mapFacilitiesIcons(d);
-    return `<li><i class="${mapFacilitiesIcons(d)} facility-icon"></i> ${d}</li>`
+    return `<li><span class="icon-list-item-container"><i class="${mapFacilitiesIcons(d)} facility-icon"></i></span> ${d}</li>`
 }

@@ -17,9 +17,7 @@ function createGrid(d) {
         return createCard(item);
     }).join("");
 
-
-    //const unique = [...new Set(data.map(item => item.group))];
-    //console.log(unique);
+    handleLikeIcons();
 
     function createCard(d) {
         //findUniqueFacilities(d);
@@ -39,7 +37,6 @@ function createGrid(d) {
                     </div>
                 </article>`
     }
-
 }
 
 function getFlagEmoji(countryName, css) {

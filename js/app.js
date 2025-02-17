@@ -1,51 +1,39 @@
-//OLD VERSION, Before learning about JSON.stringify and JSON.parse
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-/* function handleFavorite(d) {
-    let id = d.id;
-    let favoriteString = localStorage.getItem("favorites") || "";
-
-    if (!favoriteString.includes(`${id}`)) {
-        favoriteString += `${id},`;
-    } else {
-        favoriteString = favoriteString.replace(`${id},`, "")
-    }
-
-    localStorage.setItem("favorites", favoriteString);
-    //let selector = document.querySelector(`#${id} .like-button i`);
+function handleFavorite(id) {
     let selector = document.querySelector(`#${id}`);
-    console.log(selector)
-    selector.className = handleLikeIcon(id);
-} */
-
-function handleFavorite(d){
-    let id = d.id;
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    
-    if (!favorites.includes(id)) {
+    if (!checkIfItemIsSaved(id, favorites)) {
         favorites.push(id);
+        selector.dataset.selected = true;
     } else {
         favorites = favorites.filter(item => item != id)
+        selector.dataset.selected = false;
     }
-    
+
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    
-    let selector = document.querySelector(`#${id}`);
-    console.log(selector)
-    selector.className = handleLikeIcon(id);
+    handleLikeIcons();
 }
 
+function handleLikeIcons() {
+    let likeButtons = document.querySelectorAll(".like-button i");
 
-function handleLikeIcon(id) {
-    let favoriteString = localStorage.getItem("favorites") || "";
-    if (favoriteString.includes(id)) {
-        return "fa fa-heart"
-    } else {
-        return "fa fa-heart-o"
+    likeButtons.forEach(icon => {
+
+        if (icon.dataset.selected === "true") {
+            icon.className = "fa fa-heart";
+        } else {
+            icon.className = "fa fa-heart-o";
+        }
     }
+    )
 }
 
-function renderLikeIcon(id){
-    return `<button class="destination-card__like-button like-button" onclick="handleFavorite(${id})"><i class="${handleLikeIcon(id)}" id="${id}"></i></button>`
+function renderLikeIcon(id) {
+    return `<button class="destination-card__like-button like-button" onclick="handleFavorite('${id}')"><i data-selected="${checkIfItemIsSaved(id, favorites)}" id="${id}"></i></button>`
+}
+
+function checkIfItemIsSaved(id, array) {
+    return array.includes(id) ? true : false;
 }
 
 function mapFacilitiesIcons(fac) {
@@ -105,9 +93,10 @@ function mapFacilitiesIcons(fac) {
     ]
     console.log(fac)
     let iconObject = iconMaps.map(f => {
-        if(f.facility == fac){
+        if (f.facility == fac) {
             return f.iconCode
         }
     });
     return iconObject.join("");
 }
+
