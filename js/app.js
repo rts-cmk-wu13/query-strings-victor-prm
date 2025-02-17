@@ -1,6 +1,7 @@
-function handleFavorite(d) {
+//OLD VERSION, Before learning about JSON.stringify and JSON.parse
+
+/* function handleFavorite(d) {
     let id = d.id;
-    console.log("data", d)
     let favoriteString = localStorage.getItem("favorites") || "";
 
     if (!favoriteString.includes(`${id}`)) {
@@ -11,6 +12,23 @@ function handleFavorite(d) {
 
     localStorage.setItem("favorites", favoriteString);
     //let selector = document.querySelector(`#${id} .like-button i`);
+    let selector = document.querySelector(`#${id}`);
+    console.log(selector)
+    selector.className = handleLikeIcon(id);
+} */
+
+function handleFavorite(d){
+    let id = d.id;
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    
+    if (!favorites.includes(id)) {
+        favorites.push(id);
+    } else {
+        favorites = favorites.filter(item => item != id)
+    }
+    
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    
     let selector = document.querySelector(`#${id}`);
     console.log(selector)
     selector.className = handleLikeIcon(id);
