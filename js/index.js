@@ -39,7 +39,13 @@ function createGrid(d) {
     }
 }
 
-function getFlagEmoji(countryName, css) {
+/**
+ * Fetches a country code froom a given country name, and returns a corresponding flag emoji
+ * @param {string} countryName - Country Name to query for country code for
+ * @param {string} selector - CSS selector of where to place the flag emoji
+ */
+
+function getFlagEmoji(countryName, selector) {
     countryName = countryName.toLowerCase();
     fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then(resp => resp.json())
@@ -47,15 +53,8 @@ function getFlagEmoji(countryName, css) {
             let code = json[0].cca2;
             //console.log(code)
             let flag = getFlagbyCode(code);
-            document.querySelector(`.${css}`).innerHTML = flag;
+            document.querySelector(`.${selector}`).innerHTML = flag;
         })
-}
-
-function getFlagbyCode(str) {
-    //console.log(str)
-    let codePoints = str.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
-    //console.log(codePoints)
-    return String.fromCodePoint(...codePoints);
 }
 
 function findUniqueFacilities(d) {
