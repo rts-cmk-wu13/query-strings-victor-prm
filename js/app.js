@@ -100,3 +100,16 @@ function mapFacilitiesIcons(fac) {
     return iconObject.join("");
 }
 
+
+/**
+ * Finds a flag emoji corresponding to a given country code
+ * @param {string} str - Country Code to find flag emoji by
+ */
+
+function getFlagbyCode(str) {
+    //console.log(str)
+    let codePoints = str.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
+    //console.log(codePoints)
+    return String.fromCodePoint(...codePoints);
+}
+
