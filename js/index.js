@@ -1,3 +1,4 @@
+import { handleDarkMode } from "./darkmode.js";
 fetch("./data/destinations.json")
     .then(res => res.json())
     .then(data => createGrid(data));
@@ -5,9 +6,7 @@ fetch("./data/destinations.json")
 let uniqueArray = [];
 function createGrid(d) {
     let rootElm = document.querySelector(".content-container");
-    let mainHeadline = document.createElement("h1");
-    mainHeadline.classList.add("title-main");
-    mainHeadline.innerHTML = "Our Wonderful Apartments";
+    let mainHeadline = createSiteHeader("Our Wonderful Apartments");
 
     let itemGrid = document.createElement("section");
     itemGrid.classList.add("item-grid");
@@ -18,6 +17,7 @@ function createGrid(d) {
     }).join("");
 
     handleLikeIcons();
+    handleDarkMode();
 
     function createCard(d) {
         //findUniqueFacilities(d);
