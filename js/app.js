@@ -113,3 +113,19 @@ function getFlagbyCode(str) {
     return String.fromCodePoint(...codePoints);
 }
 
+function createSiteHeader(title){
+    let siteHeaderElm = document.createElement("header");
+    siteHeaderElm.classList.add("site-header", "fxrow");
+
+    siteHeaderElm.innerHTML =  `<h1 class="title-main">${title}</h1>
+                                <div class="header-darkmode-switch-container">
+                                    <label for="darkmode">Dark mode</label>
+                                        <label class="switch">
+                                            <input type="checkbox" switch name="" id="darkmode" class="header-darkmode-switch">
+                                            <span class="slider round"></span>
+                                         </label>
+                                </div>               
+    `
+    return siteHeaderElm;
+}
+

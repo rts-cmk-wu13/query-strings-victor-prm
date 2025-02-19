@@ -1,3 +1,4 @@
+import { handleDarkMode } from "./darkmode.js";
 let searchParams = new URLSearchParams(window.location.search)
 //console.log(searchParams);
 let getID = searchParams.get("id");
@@ -10,14 +11,16 @@ fetch(`./data/${getID}.json`)
 function createDetail(d) {
     //console.log(d)
     let rootElm = document.querySelector(".content-container");
+    let mainHeadline = createSiteHeader(`Ready for a trip to ${d.destination}?`);
 
     let detailSection = document.createElement("section");
     detailSection.classList.add("item-detail", "card");
 
     detailSection.innerHTML += createDetailCard(d);
 
-    rootElm.append(detailSection);
+    rootElm.append(mainHeadline, detailSection);
     handleLikeIcons();
+    handleDarkMode();
 }
 
 function createDetailCard(d) {
